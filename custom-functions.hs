@@ -7,9 +7,13 @@ doubleMe x = x + x
 -- haskell programs works by gluing together smaller functions to implement more complex functionality
 
 -- haskell's if statement
--- else part is mandatory in haskell
--- every expression and function must return something
--- if statement in haskell is an expression
+
+-- * else part is mandatory in haskell
+
+-- * every expression and function must return something
+
+-- * if statement in haskell is an expression
+
 doubleSmallNumber x =
   if x > 100
     then x
@@ -22,4 +26,4 @@ doubleSmallNumber' x =
   )
     + 1
 
--- functions have to follow camelCase
+-- * functions have to follow camelCase

@@ -1,5 +1,4 @@
 -- lists are homogenous in haskell
-{-# OPTIONS_GHC -Wno-empty-enumerations #-}
 
 lostNumbers = [4, 8, 15, 16, 23, 42]
 
@@ -11,24 +10,30 @@ foundNumbers = [1, 2, 3, 4] ++ [1, 2, 3, 4]
 
 helloWorld = "hello" ++ " world"
 
--- Lists in haskell are singly linked
+-- * Lists in haskell are singly linked
+
 -- insertion to the front is O(1)
--- cons operator is used for this purpose
--- const operator is used to insert a single item
+
+-- * cons operator is used for this purpose
+
+-- * cons operator is used to insert a single item
+
 newNumbers = 5 : foundNumbers
 
--- newestNumbers = newNumbers : 3 -> not allowed
+-- ! newestNumbers = newNumbers : 3 -> not allowed
 
 {-
-  -- [1, 2, 3, 4] is just syntactic sugar for 1 : 2 : 3 : 4 : [], where we are prepending all these numbers to the empty list one after another.
-  -- [], [[]], and [[], [], []] all mean different things
+  -- * [1, 2, 3, 4] is just syntactic sugar for 1 : 2 : 3 : 4 : [], where we are prepending all these numbers to the empty list one after another.
+  -- * [], [[]], and [[], [], []] all mean different things
 -}
 
--- use "!!" operator to access an element at a given index
+-- ! use "!!" operator to access an element at a given index
 thirdNumber = newNumbers !! 2 -- thirdNumber is 2
 
--- the program will throw an error if we try to access an index that is out of bounds.
--- we can also have nested lists
+-- ! the program will throw an error if we try to access an index that is out of bounds.
+
+--  we can also have nested lists
+
 nestedList =
   [ [ [ [1, 2, 3],
         [2, 3, 4],
@@ -58,8 +63,9 @@ nestedList =
     ]
   ]
 
--- Lists can be compared using >, <, >=, <=, ==, /=  if the items in list can be compared to each other
--- lists are compared in lexicographical order from head to last
+-- * Lists can be compared using >, <, >=, <=, ==, /=  if the items in list can be compared to each other
+
+-- * lists are compared in lexicographical order from head to last
 
 a = [1, 2, 3]
 
@@ -99,7 +105,7 @@ isNull = null newNumbers
 revNums = reverse newNumbers
 
 -- take takes a number n and a list l and extracts n elements from the beginning of the list
--- if we try to take more elements than are present in the list, take just returns the whole list
+-- ! if we try to take more elements than are present in the list, take just returns the whole list
 
 first5 = take 5 newNumbers
 
@@ -129,37 +135,47 @@ oneTo100 = [1 .. 100]
 aToZ = ['a' .. 'z']
 
 -- we can also specify a step for a range
--- floating point numbers can produce weird results in ranges
--- [firstElem, secondElem .. upperLimitOrLowerLimit]
+-- ! floating point numbers can produce weird results in ranges
+
+-- * [firstElem, secondElem .. upperLimitOrLowerLimit]
+
 first10EvenNums = [2, 4 .. 20]
 
 -- to make a list from 20 to 1
 twentyTo1 = [20, 19 .. 1]
 
--- we can also create infinite lists by not specifying the limit
+-- * we can also create infinite lists by not specifying the limit
+
 -- [1 ..]
--- haskell won't evaluate this list is accessed explicitly
+
+-- * haskell won't evaluate this list is accessed explicitly
+
 -- this is due to haskell being lazy
 infList = [1 ..]
 
 -- first 24
--- now when haskell finds out what we want out of this abomination of a list, it will execute the range and provide the desired result. Hence saving time and resources.
+
+-- * now when haskell finds out what we want out of this abomination of a list, it will execute the range and provide the desired result. Hence saving time and resources.
+
 first24 = take 24 infList
 
 {-
 -- there are some functions that produce infinite lists in haskell
  -}
 
--- cycle takes a list and cycles it into an infinite list, we have to slice it at some point for it to be useful.
+-- * cycle takes a list and cycles it into an infinite list, we have to slice it at some point for it to be useful.
+
 cycledList = take 10 (cycle [1, 2, 3, 4])
 
--- repeat is like cycle but for a single element
+-- * repeat is like cycle but for a single element
+
 repeated5 = drop 34 (take 100 (repeat 5))
 
--- it is easier to use 'replicate' to produce a repetition of a number
+-- * it is easier to use 'replicate' to produce a repetition of a number
+
 repeated10 = replicate 3 10
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- !----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- list comprehension
 -- basically ranges on steroids if you will
 -- similar to set comprehension in set theory
@@ -172,7 +188,8 @@ withPredicate = [x * 2 | x <- [1 .. 10], x * 2 >= 12]
 
 anotherOne = [x | x <- [50 .. 100], x `mod` 7 == 3]
 
--- we can also put a comprehension in a function for reusability
+-- * we can also put a comprehension in a function for reusability
+
 boomOrBangSelector x =
   if x < 10
     then "BOOM!"
@@ -180,14 +197,17 @@ boomOrBangSelector x =
 
 boomBangs xs' = [boomOrBangSelector x | x <- xs', odd x]
 
--- we can include several predicates
+-- * we can include several predicates
+
 withMultiplePredicates = [x | x <- [10 .. 20], x /= 13, x /= 15, x /= 19]
 
---  We can also draw inputs from multiple lists.
--- When drawing from multiple lists, comprehensions produce all combinations of the given lists.
+-- * We can also draw inputs from multiple lists.
+
+-- * When drawing from multiple lists, comprehensions produce all combinations of the given lists.
+
 multipleInputs = [x * y | x <- [1, 2, 3], y <- [5, 6, 7]]
 
--- multipleInputs = [x * y * z | x <- [1, 2, 3], y <- [5, 6, 7], z <- [8, 9, 10]] is also possible
+-- * multipleInputs = [x * y * z | x <- [1, 2, 3], y <- [5, 6, 7], z <- [8, 9, 10]] is also possible
 
 -- custom version of length
 length' l = sum [1 | _ <- l]
