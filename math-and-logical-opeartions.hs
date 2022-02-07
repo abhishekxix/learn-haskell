@@ -67,7 +67,16 @@ floorVal = floor 9.999
 {- logical operators -}
 -- tAdnF = True && False
 
--- tOrF = True || False
--- notTrue = not(True)
--- a == b
--- a /= b
+-- *  tOrF = True || False
+
+-- *  notTrue = not(True)
+
+-- *  a == b
+
+-- *  a /= b
+
+-- * (^) :: (Num a, Integral b) => a -> b -> a
+
+-- * (^^) :: (Fractional a, Integral b) => a -> b -> a
+
+-- * (**) :: Floating a => a -> a -> a
